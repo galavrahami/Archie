@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARCHIE- Researcher</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <script>
+        function myFunction2(selection) {
+
+            var thisSelection = document.getElementById(selection).value;
+            if (thisSelection == "") {
+                document.getElementById("mySelect").innerHTML = "";
+                return;
+            }
+
+            if (thisSelection == 'Name' || thisSelection == 'Author' || thisSelection == 'Key Word' ||thisSelection=='Category') {
+
+                document.getElementById("searchByText").style.visibility = 'visible';
+                document.getElementById("text").style.visibility = 'visible';
+                document.getElementById("showMe").style.visibility = 'visible';
+            }
+        }
+        function showHint(str) {
+            var thisSelection = document.getElementById("mySelect").value;
+            if (str.length == 0) {
+                document.getElementById("suggestions").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("suggestions").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "Suggestions.php?q=" + str +"&thisSelection="+thisSelection, true);
+                xmlhttp.send();
+            }
+        }
+
+    </script>
+</head>
+<body>
+<form action="Search.php" method="POST" class="dark-matter">
+    <h1>ARCHIE
+        <span>Find Document</span>
+    </h1>
+    <label>
+        <span>Search by:</span>
+        <select name="mySelect" id="mySelect" onchange="myFunction2(this.id)">
+            <option value="Nothing">Select...</option>
+            <option value="Key Word">Key Word</option>
+            <option value="Category">Category</option>
+            <option value="Name">Name</option>
+            <option value="Author">Author</option>
+        </select>
+
+        <div id="txtHint"></div>
+
+        <label>
+            <span style="visibility: hidden" id="text">Enter Text:</span>
+            <input type="text" id="searchByText" name="searchByText" style="visibility: hidden" placeholder="Insert text" onkeyup="showHint(this.value)"/>
+            <p style="visibility: hidden" id="showMe">Suggestions: <span id="suggestions"></span></p>
+        </label>
+
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" value="Search" />
+    </label>
+    <a href="javascript:history.back()">Home</a>
+</form>
+
+</body>
+</html>

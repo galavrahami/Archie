@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARCHIE: Add Document</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script src="/wp-includes/js/addInput.js" language="Javascript" type="text/javascript"></script>
+<script>
+    var counter = 1;
+    var limit = 3;
+    function addKeywordInput(divName){
+        if (counter == limit)  {
+            alert("You have reached the limit of adding " + counter + " inputs");
+        }
+        else {
+            var newdiv = document.createElement('div');
+            newdiv.innerHTML = "Keyword " + (counter + 1) + " : <input type='text' name='myInputs[]'>";
+            document.getElementById(divName).appendChild(newdiv);
+            counter++;
+        }
+    }
+</script>
+<body>
+
+<form action="AddDocGetter.php" method="post" enctype="multipart/form-data" class="dark-matter">
+    <h1>ARCHIE:
+        <span>Add Document</span>
+    </h1>
+    <label>
+        <span>Document Name:</span>
+        <input id="docName" type="text" name="docName" placeholder="Document Name" />
+    </label>
+
+    <label>
+        <span>Employee Name:</span>
+        <input id="empName" type="text" name="empName" placeholder="Employee Name" />
+    </label>
+    <label>
+        <span>Artifact Author:</span>
+        <input id="author" type="text" name="author" placeholder="Artifact Author" />
+    </label>
+    <label>
+        <span>Category:</span>
+        <input id="cat" type="text" name="cat" placeholder="Category Name" />
+    </label>
+    <label>
+        <div id="dynamicInput"> Keyword 1:<input type="text" name="myInputs[]"></div>
+        <span>&nbsp;</span>
+        <input type="button" class ="button" value="Add another keyword" onClick="addKeywordInput('dynamicInput');">
+    </label>
+    <label>
+        <input type="file" name="pics[]" id ="pics" multiple >
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" name= "submit" value="Add" />
+    </label>
+
+    <label>
+        <a href="javascript:history.back()">Home</a>
+    </label>
+</form>

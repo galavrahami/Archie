@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARCHIE- Sign up</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+
+
+<form action="SignUpGetter.php" method="POST" class="dark-matter">
+    <h1>Sign In:
+        <span>Please fill in the following fields: </span>
+    </h1>
+    <label>
+        <span>Name :</span>
+        <input id="name" type="text" name="name" placeholder="Your Full Name" />
+    </label>
+    <label>
+        <span>Username:</span>
+        <input id="username" type="text" name="username" placeholder="Username" />
+    </label>
+    <label>
+        <span>Password:</span>
+        <input id="password" type="password" name="password" placeholder="Password" />
+    </label>
+    <label>
+        <span>Your Email :</span>
+        <input id="email" type="email" name="email" placeholder="Valid Email Address" />
+    </label>
+    <label>
+        Role:<br>
+        <input type="radio" name="role" value="Researcher"> Researcher<br>
+        <input type="radio" name="role" value="Archive Employee"> Archive Employee<br>
+        <input type="radio" name="role" value="Manager"> Manager <br>
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" value="Submit" />
+    </label>
+</form>
+</body>
+</html>
